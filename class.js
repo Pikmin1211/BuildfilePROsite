@@ -10,6 +10,16 @@ function exportClassFile_OnClick(){
 //
 function importClassFile_OnChange(){
 	var file = document.getElementById("importClassFile").files[0];
-	alert(file.name);
+	var fr = new FileReader();
+	fr.readAsText(file);
+	fr.onload = function (evt) {
+		alert(evt.target.result); // whole file as text
+	}
+	var fr2 = new FileReader();
+	fr2.readAsBinaryString(file);
+	fr2.onload = function (evt) {
+		alert("0x" + evt.target.result.charCodeAt(0).toString(16)); // byte 0
+	}
+
 }
 
